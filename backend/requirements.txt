@@ -1,4 +1,3 @@
-
 pandas
 numpy
 scikit-learn
@@ -9,3 +8,9 @@ scipy
 pylsl-1.12.1
 muselsl
 streamlit
+# FastAPI backend:
+fastapi
+uvicorn[standard]
+websockets
+brainflow
+mne
