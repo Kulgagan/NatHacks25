@@ -1,6 +1,9 @@
+#RUN IDE AS ADMINISTRATOR OR ELSE IT WILL NOT CONNECT!!!!!!!!!!!!!!
 from brainflow.board_shim import BoardShim, BrainFlowInputParams, BoardIds, BrainFlowError
 import time
 import matplotlib.pyplot as plt
+
+#RUN AS ADMINISTRATOR OR ELSE IT WILL NOT CONNECT!!!!!!!!!!!!!!
 
 # Enable BrainFlow logs (helpful for debugging)
 BoardShim.enable_dev_board_logger()
