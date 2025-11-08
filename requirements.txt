@@ -1,0 +1,11 @@
+
+pandas
+numpy
+scikit-learn
+matplotlib
+joblib
+# Realtime / dashboard:
+scipy
+pylsl-1.12.1
+muselsl
+streamlit
