@@ -345,9 +345,6 @@ async def shutdown():
             except:
                 pass
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8001)
 
 
 # ================= RL MUSIC SERVICE =====================
@@ -493,3 +490,8 @@ async def calibration_status():
         "counts": {"relax": len(cal.get("relax", []) or []), "task": len(cal.get("task", []) or [])},
         "midpoint": cal.get("midpoint"),
     }
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8001)
