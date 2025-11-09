@@ -264,10 +264,6 @@ const Session = () => {
               {playing ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
             </Button>
 
-            <Button variant="outline" size="icon" onClick={skipGenre} aria-label="Skip to a new texture">
-              <SkipForward className="w-5 h-5" />
-            </Button>
-
             <div className="flex items-center gap-2 ml-2">
               <Volume2 className="w-5 h-5 text-muted-foreground" />
               <div className="w-40">
@@ -276,25 +272,6 @@ const Session = () => {
             </div>
           </div>
         </header>
-
-        {/* Debug HUD */}
-        <div className="mb-6 rounded-xl border bg-card p-4 text-sm">
-          <div className="font-medium mb-2">Audio Debug</div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-            <div>Audio ready: <span className="font-mono">{String(audioReady)}</span></div>
-            <div>Worklet loaded: <span className="font-mono">{String(workletLoaded)}</span></div>
-            <div>WS state: <span className="font-mono">{wsState}</span></div>
-            <div>Last chunk: <span className="font-mono">{lastChunkBytes} bytes</span></div>
-            <div>Max amp: <span className="font-mono">{lastChunkAmp.toFixed(5)}</span></div>
-            <div className="col-span-2 md:col-span-4">
-              {lastError && <span className="text-red-500">Error: {lastError}</span>}
-            </div>
-          </div>
-          <div className="mt-3">
-            <Button variant="outline" onClick={testTone}>Play 1s Test Tone</Button>
-          </div>
-        </div>
-
         {/* Focus visual + stats */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="rounded-2xl border bg-card p-6">
@@ -316,10 +293,26 @@ const Session = () => {
             <ul className="text-sm text-muted-foreground space-y-1">
               <li>• Infinite, seamless generation (low-latency streaming)</li>
               <li>• RL agent keeps what improves focus, explores when it dips</li>
-              <li>• Use Skip to nudge it to a new texture</li>
             </ul>
           </div>
         </section>
+        {/* Debug HUD */}
+        <div className="mt-8 mb-6 rounded-xl border bg-card p-4 text-sm">
+          <div className="font-medium mb-2">Audio Debug</div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <div>Audio ready: <span className="font-mono">{String(audioReady)}</span></div>
+            <div>Worklet loaded: <span className="font-mono">{String(workletLoaded)}</span></div>
+            <div>WS state: <span className="font-mono">{wsState}</span></div>
+            <div>Last chunk: <span className="font-mono">{lastChunkBytes} bytes</span></div>
+            <div>Max amp: <span className="font-mono">{lastChunkAmp.toFixed(5)}</span></div>
+            <div className="col-span-2 md:col-span-4">
+              {lastError && <span className="text-red-500">Error: {lastError}</span>}
+            </div>
+          </div>
+          <div className="mt-3">
+            <Button variant="outline" onClick={testTone}>Play 1s Test Tone</Button>
+          </div>
+        </div>
       </main>
     </div>
   );
