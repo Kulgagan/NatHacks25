@@ -1,6 +1,7 @@
 # ============================================================================
 # IMPORTS
 # ============================================================================
+import json
 import asyncio
 import threading
 import time
@@ -58,8 +59,8 @@ def ratio_to_focus_percentage(ratio):
     """Convert alpha/beta ratio to focus percentage (0-100%)."""
     if ratio is None:
         return 0.0
-    ratio = max(0.2, min(3.0, ratio))
-    normalized = 1.0 - ((ratio - 0.2) / 2.8)
+    ratio = max(0.05, min(2.0, ratio))
+    normalized = 1.0 - ((ratio - 0.05) / 1.95)
     return max(0.0, min(100.0, normalized * 100.0))
 
 # ============================================================================
@@ -309,3 +310,66 @@ async def shutdown():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8001)
+
+
+# ================= RL MUSIC SERVICE =====================
+from rl_music import MusicSession
+music_sessions = {}
+
+@app.websocket("/ws/music")
+async def music_ws(ws: WebSocket):
+    await ws.accept()
+    session = MusicSession()
+    client_id = id(ws)
+    music_sessions[client_id] = session
+
+    send_task = None
+    recv_task = None
+    stop_flag = False
+
+    async def sender():
+        # stream binary PCM chunks forever until closed
+        try:
+            while True:
+                data = session.next_chunk()
+                await ws.send_bytes(data)
+                await asyncio.sleep(0.0)  # yield
+        except Exception as e:
+            pass
+
+    async def receiver():
+        # receive control messages (JSON text)
+        try:
+            while True:
+                msg = await ws.receive_text()
+                try:
+                    payload = json.loads(msg)
+                except Exception:
+                    continue
+                t = payload.get("type")
+                if t == "focus":
+                    session.set_focus(float(payload.get("value", 0.0)))
+                elif t == "volume":
+                    session.volume = float(payload.get("value", 0.8))
+                elif t == "skip":
+                    session.skip()
+                elif t == "stop":
+                    break
+        except WebSocketDisconnect:
+            pass
+        except Exception:
+            pass
+
+    try:
+        send_task = asyncio.create_task(sender())
+        recv_task = asyncio.create_task(receiver())
+        await asyncio.wait([send_task, recv_task], return_when=asyncio.FIRST_COMPLETED)
+    finally:
+        if send_task: send_task.cancel()
+        if recv_task: recv_task.cancel()
+        music_sessions.pop(client_id, None)
+        try:
+            await ws.close()
+        except Exception:
+            pass
+# ========================================================

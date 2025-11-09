@@ -77,5 +77,11 @@ export const api = {
     const wsHost = API_BASE_URL.replace(/^https?:\/\//, '');
     return `${wsProtocol}://${wsHost}/ws`;
   },
-};
 
+  // Music WebSocket URL
+  getMusicWebSocketUrl(): string {
+    const wsProtocol = API_BASE_URL.startsWith('https') ? 'wss' : 'ws';
+    const wsHost = API_BASE_URL.replace(/^https?:\/\//, '');
+    return `${wsProtocol}://${wsHost}/ws/music`;
+  },
+}

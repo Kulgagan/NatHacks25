@@ -5,7 +5,7 @@ matplotlib
 joblib
 # Realtime / dashboard:
 scipy
-pylsl==1.12.1
+pylsl
 muselsl
 streamlit
 # FastAPI backend:
