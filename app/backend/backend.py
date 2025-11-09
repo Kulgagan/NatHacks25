@@ -7,6 +7,7 @@ import threading
 import time
 import queue
 import logging
+import math
 from typing import Optional
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -21,8 +22,8 @@ logger = logging.getLogger(__name__)
 # CONFIGURATION
 # ============================================================================
 BOARD_ID = BoardIds.MUSE_2_BOARD.value
-UPDATE_INTERVAL = 2.0  # Update every 2 seconds
-WINDOW_SECONDS = 3.0   # Use 3 seconds of data
+UPDATE_INTERVAL = 2  # Update every 2 seconds
+WINDOW_SECONDS = 3   # Use 3 seconds of data
 
 # ============================================================================
 # BRAINFLOW FUNCTIONS (only called when connect button is pressed)
@@ -59,9 +60,21 @@ def ratio_to_focus_percentage(ratio):
     """Convert alpha/beta ratio to focus percentage (0-100%)."""
     if ratio is None:
         return 0.0
-    ratio = max(0.05, min(2.0, ratio))
-    normalized = 1.0 - ((ratio - 0.05) / 1.95)
-    return max(0.0, min(100.0, normalized * 100.0))
+    
+    # Map ratio [0.2, 3.0] to [100%, 0%] (inverted)
+    # ratio = max(0.2, min(3.0, ratio))
+    # normalized = 1.0 - ((ratio - 0.2) / 2.8)
+    # return max(0.0, min(100.0, normalized * 100.0))
+
+    # Parameters (you can tune these)
+    midpoint = 0.7      # roughly neutral focus point
+    steepness = 5.0     # controls how quickly focus changes near midpoint
+
+    focus_score = 1 / (1 + math.exp(steepness * (ratio - midpoint)))
+
+    # Scale to 0–100%
+    focus_percent = focus_score * 100
+    return round(focus_percent, 2)
 
 # ============================================================================
 # DEVICE STATE
