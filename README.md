@@ -2,7 +2,7 @@
 
 ## Clario: Be calm. Stay focused. Perform your best.
 
-![MUSYNC Stack](docs/stack-diagram-banner.svg)
+<img src="docs/focus-session.png" alt="Clario Focus Session" width="720" />
 
 An interactive web application that generates adaptive music based on your brain activity using the Muse 2 EEG headband. The music adapts in real-time to your focus levels, creating a unique neurofeedback experience.
 
@@ -21,9 +21,7 @@ Sessions run locally for privacy; only a single focus value and basic controls a
 
 ![MUSYNC Model](docs/musync-model.png)
 
-## Screenshot
-
-<img src="docs/focus-session.png" alt="Clario Focus Session" width="720" />
+![MUSYNC Stack](docs/stack-diagram-banner.svg)
 
 ## Features
 
