@@ -17,7 +17,7 @@ An interactive web application that generates adaptive music based on your brain
 - Python 3.13+
 - Node.js (latest LTS recommended)
 - Muse 2 EEG headband
-- macOS (for Muse 2 connectivity)
+- macOS / Windows (for Muse 2 connectivity)
 
 ## Installation
 
