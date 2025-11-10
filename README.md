@@ -1,8 +1,12 @@
-# NatHacks25 - Brain Music Interface
+# Clario
+
+![Clario Logo](logo.png)
 
 ![MUSYNC Stack](docs/stack-diagram-banner.svg)
 
 An interactive web application that generates adaptive music based on your brain activity using the Muse 2 EEG headband. The music adapts in real-time to your focus levels, creating a unique neurofeedback experience.
+
+Made for the natHACKS 2025 hackathon.
 
 ## Overview
 Clario helps people with learning disabilities stay focused during demanding work—timed tests, reading assignments, homework blocks, and deep-work sprints. Put on a Muse 2 headset, press Start, and complete a quick one-minute calibration (30 seconds relaxing, 30 seconds mental math). From there, Clario’s MUSYNC (Music Utilizing SYNchronized Cognitive feedback) reads your moment-to-moment focus and shapes the sound so settling in feels easier and distractions feel quieter.
@@ -121,6 +125,15 @@ docs/
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
+
+## Contributors
+
+- Megh Mistry
+- Nithesh Liyanaarachchi
+- Kulgagan Bajwa
+- Umar Kiani
+- Mohammad Naqvi
+- Vladislav Marchenko
 
 ## License
 
