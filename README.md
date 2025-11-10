@@ -17,8 +17,7 @@ During your session, Clario adapts in real time. When attention drifts, the musi
 
 Sessions run locally for privacy; only a single focus value and basic controls are shared with the audio service. If the headset disconnects, playback fades out safely and resumes when you reconnect. Clario isn’t a medical device; it’s a practical study and testing companion that makes focused work calmer, more predictable, and more achievable for people with diverse learning needs.
 
-## MUSYNC Model
-(Music Utilizing SYNchronized Cognitive feedback)
+## MUSYNC Model (Music Utilizing SYNchronized Cognitive feedback)
 
 ![MUSYNC Model](docs/musync-model.png)
 
