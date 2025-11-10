@@ -137,4 +137,4 @@ docs/
 
 ## References
 
-<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10221503/">https://pmc.ncbi.nlm.nih.gov/articles/PMC10221503/</a>
+ - <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10221503/">https://pmc.ncbi.nlm.nih.gov/articles/PMC10221503/</a>
