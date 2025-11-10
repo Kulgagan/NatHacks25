@@ -1,12 +1,125 @@
-How to Run this:
+# NatHacks25 - Brain Music Interface
 
-1) Run Backend first:
-cd app/backend/
-uvicorn backend:app --reload --host 127.0.0.1 --port 8000
+An interactive web application that generates adaptive music based on your brain activity using the Muse 2 EEG headband. The music adapts in real-time to your focus levels, creating a unique neurofeedback experience.
 
-2) Run Frontend next (in seperate terminal):
-cd app/frontend/
+## Features
+
+- Real-time EEG data processing from Muse 2 headband
+- Focus level detection using alpha/beta wave ratios
+- Adaptive music generation responding to brain state
+- Live visualization of focus metrics
+- Calibration system for personalized baseline
+- WebSocket-based real-time updates
+- Responsive web interface
+
+## Prerequisites
+
+- Python 3.13+
+- Node.js (latest LTS recommended)
+- Muse 2 EEG headband
+- macOS (for Muse 2 connectivity)
+
+## Installation
+
+### Backend Setup
+
+```bash
+# Navigate to backend directory
+cd app/backend
+
+# Install Python dependencies
+pip install -r requirements.txt
+```
+
+### Frontend Setup
+
+```bash
+# Navigate to frontend directory
+cd app/frontend
+
+# Install Node dependencies
 npm install
-npm run dev
+```
 
-visit localhost:8000 to access the web app
+## Development
+
+Run both the backend and frontend development servers:
+
+### 1. Start the Backend
+
+```bash
+cd app/backend
+uvicorn backend:app --reload --host 127.0.0.1 --port 8000
+```
+
+The backend will be available at:
+- API: http://127.0.0.1:8000
+- WebSocket: ws://127.0.0.1:8000/ws
+- Music WebSocket: ws://127.0.0.1:8000/ws/music
+
+### 2. Start the Frontend
+
+In a new terminal:
+
+```bash
+cd app/frontend
+npm run dev
+```
+
+Visit http://localhost:5173 to access the web app in development mode.
+
+## Production Build
+
+To run everything on a single port:
+
+```bash
+# Build the frontend
+cd app/frontend
+npm run build
+
+# Start the backend (it will serve the built frontend)
+cd ../backend
+uvicorn backend:app --host 127.0.0.1 --port 8000
+```
+
+Visit http://127.0.0.1:8000 to access the production build.
+
+## Usage
+
+1. Connect your Muse 2 headband via Bluetooth
+2. Open the web application
+3. Click "Connect" to establish connection with the headband
+4. Follow the calibration process to personalize focus detection
+5. Start the music session and experience adaptive audio
+
+## Project Structure
+
+```
+app/
+├── backend/           # FastAPI backend
+│   ├── backend.py    # Main server + EEG processing
+│   └── rl_music.py   # Music generation service
+└── frontend/         # React/Vite frontend
+    ├── src/          # Frontend source code
+    └── public/       # Static assets
+```
+
+## Troubleshooting
+
+- Ensure Muse 2 is charged and in pairing mode
+- Check Bluetooth connectivity
+- Verify port 8000 is available
+- For connection issues, try restarting the headband
+- Frontend dev server needs VITE_API_URL if using different backend port
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
