@@ -1,6 +1,6 @@
-# Clario
+# Clario: Be calm. Stay focused. Perform your best.
 
-![Clario Logo](logo.png)
+<img src="logo.png" alt="Clario Logo" width="160" />
 
 ![MUSYNC Stack](docs/stack-diagram-banner.svg)
 
