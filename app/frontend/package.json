@@ -8,7 +8,19 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "diagram:flow": "mmdc -i ../../docs/musync-flow.mmd -o ../../docs/musync-flow.png -s 2 -b white",
+    "diagram:flow:svg": "mmdc -i ../../docs/musync-flow.mmd -o ../../docs/musync-flow.svg",
+    "diagram:seq": "mmdc -i ../../docs/musync-sequence.mmd -o ../../docs/musync-sequence.png -s 2 -b white",
+    "diagram:seq:svg": "mmdc -i ../../docs/musync-sequence.mmd -o ../../docs/musync-sequence.svg",
+    "diagram:stack": "mmdc -i ../../docs/stack-diagram.mmd -o ../../docs/stack-diagram.png -w 2400 -H 1600 -b white",
+    "diagram:stack:svg": "mmdc -i ../../docs/stack-diagram.mmd -o ../../docs/stack-diagram.svg",
+    "diagram:stack:banner": "mmdc -i ../../docs/stack-diagram-banner.mmd -o ../../docs/stack-diagram-banner.png -w 2000 -H 700 -b white",
+    "diagram:stack:banner:svg": "mmdc -i ../../docs/stack-diagram-banner.mmd -o ../../docs/stack-diagram-banner.svg",
+    "diagram:musync": "mmdc -i ../../docs/musync-model.mmd -o ../../docs/musync-model.png -s 2 -b white",
+    "diagram:musync:svg": "mmdc -i ../../docs/musync-model.mmd -o ../../docs/musync-model.svg",
+    "diagram:all": "npm run diagram:flow && npm run diagram:seq && npm run diagram:stack && npm run diagram:stack:banner",
+    "diagram:all:svg": "npm run diagram:flow:svg && npm run diagram:seq:svg && npm run diagram:stack:svg && npm run diagram:stack:banner:svg && npm run diagram:musync:svg"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

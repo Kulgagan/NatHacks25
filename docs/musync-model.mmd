@@ -1,0 +1,24 @@
+flowchart LR
+
+  %% Inputs
+  EEG["Focus Score (0-100, 1 Hz)"]
+  PROF["Profile (Questionnaire prefs)"]
+  BOUNDS["Safety Bounds (amp, tempo, density)"]
+
+  %% Policy + Generation
+  subgraph MUSYNC[MUSYNC Model]
+    POL["RL Policy (exploit / explore)"]
+    ACT["Audio Params (density, tempo, layers, transitions)"]
+    GEN["Audio Generator (motifs, mixing, crossfade)"]
+  end
+
+  %% Playback + Feedback
+  PLAY["Playback (AudioWorklet, volume, skip)"]
+  RWD["Reward (delta focus, stability)"]
+
+  %% Wiring
+  EEG --> POL
+  PROF --> POL
+  BOUNDS --> POL
+  POL --> ACT --> GEN --> PLAY
+  EEG --> RWD --> POL

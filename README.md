@@ -1,6 +1,21 @@
 # NatHacks25 - Brain Music Interface
 
+![MUSYNC Stack](docs/stack-diagram-banner.svg)
+
 An interactive web application that generates adaptive music based on your brain activity using the Muse 2 EEG headband. The music adapts in real-time to your focus levels, creating a unique neurofeedback experience.
+
+## Overview
+Clario helps people with learning disabilities stay focused during demanding work—timed tests, reading assignments, homework blocks, and deep-work sprints. Put on a Muse 2 headset, press Start, and complete a quick one-minute calibration (30 seconds relaxing, 30 seconds mental math). From there, Clario’s MUSYNC (Music Utilizing SYNchronized Cognitive feedback) reads your moment-to-moment focus and shapes the sound so settling in feels easier and distractions feel quieter.
+
+After calibration, a short learning-profile and psychology questionnaire asks about sound sensitivity, distractibility, preferred energy level, and task type. Your answers become a personal listening profile that steers the music. For some people that means steady, predictable rhythm with gentle variation; for others it’s softer dynamics, fewer bright timbres, or slower harmonic movement. You can revise these choices any time, and they stay on your device.
+
+During your session, Clario adapts in real time. When attention drifts, the music nudges you back to your flow state without abrupt changes; when you’re focused, it stays out of the way and remains supportive rather than demanding attention. You stay in control with simple, accessible controls—start/pause, volume, skip—plus a clear focus meter and one‑tap recalibration.
+
+Sessions run locally for privacy; only a single focus value and basic controls are shared with the audio service. If the headset disconnects, playback fades out safely and resumes when you reconnect. Clario isn’t a medical device; it’s a practical study and testing companion that makes focused work calmer, more predictable, and more achievable for people with diverse learning needs.
+
+## MUSYNC Model
+
+![MUSYNC Model](docs/musync-model.png)
 
 ## Features
 
@@ -80,12 +95,15 @@ Visit http://localhost:5173 to access the web app in development mode.
 
 ```
 app/
-├── backend/           # FastAPI backend
-│   ├── backend.py    # Main server + EEG processing
-│   └── rl_music.py   # Music generation service
-└── frontend/         # React/Vite frontend
-    ├── src/          # Frontend source code
-    └── public/       # Static assets
+  backend/                 # FastAPI backend
+    backend.py             # Main server + EEG processing
+    rl_music.py            # Music generation service
+  frontend/                # React/Vite frontend
+    src/                   # Frontend source code
+    public/                # Static assets
+docs/
+  stack-diagram-banner.mmd # Wide README diagram (source)
+  stack-diagram-banner.svg # Wide README diagram (SVG)
 ```
 
 ## Troubleshooting
